@@ -104,6 +104,13 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
     imprimir_binario(valor_led);
 }
 
+// Função para ligar todos os LEDs no vermelho com 80% de intensidade
+void ligar_leds_vermelho(PIO pio, uint sm) {
+    uint32_t valor_led = matrix_rgb(0.0, 0.8, 0.0); // 80% de intensidade no vermelho
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+}
 
 int main()
 {
@@ -171,6 +178,11 @@ PIO pio = pio0;
                     desenho_pio(desenho4, valor_led, pio, sm, r, g, b); // Ação para o padrão 4                   
                     sleep_ms(500);
                     desenho_pio(desenho5, valor_led, pio, sm, r, g, b); // Ação para o padrão                    
+                    sleep_ms(500);
+                    break;
+
+                case 'C':
+                    ligar_leds_vermelho(pio, sm); // Liga todos os LEDs no vermelho com 80% de intensidade
                     sleep_ms(500);
                     break;
 
