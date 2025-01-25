@@ -275,11 +275,20 @@ void ligar_leds_verde(PIO pio, uint sm) {
 
 // Função para ligar todos os LEDs na cor azul com 100% de intensidade
 void ligar_leds_azul(PIO pio, uint sm) {
-    uint32_t valor_led = matrix_rgb(0.0, 0.0, 1.0); // 100% de intensidade no azul
+    uint32_t valor_led = matrix_rgb(1.0, 0.0, 0.0); // 100% de intensidade no azul
     for (int i = 0; i < NUM_PIXELS; i++) {
         pio_sm_put_blocking(pio, sm, valor_led);
     }
 }
+
+//Função para ligar todos os LEDs na branca com 20% de intensidade
+void ligar_leds_branco(PIO pio, uint sm) {
+    uint32_t valor_led = matrix_rgb(0.2, 0.2, 0.2); // 100% de intensidade no azul
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+}
+
 
 int main()
 {
@@ -405,6 +414,11 @@ PIO pio = pio0;
                     ligar_leds_verde(pio, sm); // Liga todos os LEDs na cor verde com 50% de intensidade
                     sleep_ms(500);
                     break;
+
+                case '#':
+                    ligar_leds_branco(pio, sm);// Liga todos os LEDs na cor branca com 20% de intensidade
+                    sleep_ms(500);
+
                 default:
                     break;
             }
