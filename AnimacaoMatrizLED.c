@@ -73,6 +73,47 @@ double desenho5[25] = {
     0.0, 0.3, 0.3, 0.0, 0.3
 };
 
+// Desenhos para a animação da tecla '3' 
+double frame1[25] = {
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2
+};
+
+double frame2[25] = {
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0
+};
+
+double frame3[25] = {
+    0.2, 0.2, 0.2, 0.2, 0.2,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.2, 0.2, 0.2, 0.2, 0.2
+};
+
+double frame4[25] = {
+    0.0, 0.0, 0.2, 0.0, 0.0,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0
+};
+
+double frame5[25] = {
+    0.2, 0.2, 0.0, 0.2, 0.2,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.2, 0.2, 0.0, 0.2, 0.2
+};
+
 // Função para imprimir valor binário
 void imprimir_binario(int num) {
     int i;
@@ -168,6 +209,18 @@ PIO pio = pio0;
             // Ações para cada tecla
             switch (tecla) 
             {
+                case '3':
+                    desenho_pio(frame1, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    desenho_pio(frame2, valor_led, pio, sm, r, g, b); // Frame 2
+                    sleep_ms(500);
+                    desenho_pio(frame3, valor_led, pio, sm, r, g, b); // Frame 3
+                    sleep_ms(500);
+                    desenho_pio(frame4, valor_led, pio, sm, r, g, b); // Frame 4
+                    sleep_ms(500);
+                    desenho_pio(frame5, valor_led, pio, sm, r, g, b); // Frame 5
+                    sleep_ms(500);
+                    break;
                 case '6':
                     desenho_pio(desenho1, valor_led, pio, sm, r, g, b); // Ação para o padrão 1
                     sleep_ms(500);
