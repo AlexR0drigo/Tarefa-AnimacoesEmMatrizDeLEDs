@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "hardware/pwm.h"
 
 //BIBLIOTECAS PARA A MATRIZ LED
 #include <math.h>
@@ -17,6 +18,24 @@
 // Pino do buzzer
 #define BUZZ 12
 
+//Função que ativa o buzzer por um curto periodo e depois desativa
+void Ativar_buzzer(uint gpio, uint frequencia)
+{
+    uint slice_num = pwm_gpio_to_slice_num(gpio);
+    gpio_set_function(gpio, GPIO_FUNC_PWM);
+
+    uint32_t freq_relogio = 125000000;
+    uint16_t contador = freq_relogio / frequencia;
+
+    pwm_set_wrap(slice_num, contador);
+    pwm_set_chan_level(slice_num, pwm_gpio_to_channel(gpio), contador / 2);
+
+    pwm_set_enabled(slice_num, true);
+    sleep_ms(50);  // Som curto (50ms)
+    pwm_set_enabled(slice_num, false);
+    
+    sleep_ms(500); // Pausa maior entre os sons para evitar efeito contínuo
+}
 
 // Pinos para o teclado matricial
 const uint8_t teclas_colunas[4] = {4, 3, 2, 1};
@@ -160,6 +179,52 @@ double cruzAlternada_frame5[25] = {
     0.3, 0.0, 0.0, 0.0, 0.3
 };
 
+// Desenhos para a animação da tecla '4' 
+// Frame 1
+double onda1[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+// Frame 2
+double onda2[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.4, 0.4, 0.4, 0.0,
+    0.0, 0.4, 0.0, 0.4, 0.0,
+    0.0, 0.4, 0.4, 0.4, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+// Frame 3
+double onda3[25] = {
+    0.4, 0.4, 0.4, 0.4, 0.4,
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.4, 0.4, 0.4, 0.4, 0.4
+};
+
+// Frame 4
+double onda4[25] = {
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.4, 0.4, 0.4, 0.0,
+    0.0, 0.4, 0.0, 0.4, 0.0,
+    0.0, 0.4, 0.4, 0.4, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4
+};
+
+// Frame 5
+double onda5[25] = {
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.4, 0.0, 0.4, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.4, 0.0, 0.4, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4
+};
+
 
 // Função para imprimir valor binário
 void imprimir_binario(int num) {
@@ -296,6 +361,25 @@ PIO pio = pio0;
                     desenho_pio(frame5, valor_led, pio, sm, r, g, b); // Frame 5
                     sleep_ms(500);
                     break;
+
+                case '4':
+                    Ativar_buzzer(BUZZ, 500);
+                    desenho_pio(onda1, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 600);
+                    desenho_pio(onda2, valor_led, pio, sm, r, g, b); // Frame 2
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 700);
+                    desenho_pio(onda3, valor_led, pio, sm, r, g, b); // Frame 3
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 800);
+                    desenho_pio(onda4, valor_led, pio, sm, r, g, b); // Frame 4
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 1000);
+                    desenho_pio(onda5, valor_led, pio, sm, r, g, b); // Frame 5
+                    sleep_ms(500);
+                    break;
+
                 case '6':
                     desenho_pio(desenho1, valor_led, pio, sm, r, g, b); // Ação para o padrão 1
                     sleep_ms(500);

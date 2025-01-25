@@ -53,6 +53,7 @@ target_link_libraries(AnimacaoMatrizLED PRIVATE
         pico_stdlib
         hardware_pio
 	    hardware_adc
+        hardware_pwm
         pico_bootrom)
 
 # Add the standard include files to the build
