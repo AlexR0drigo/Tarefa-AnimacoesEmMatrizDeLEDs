@@ -51,13 +51,180 @@ const char matriz_teclas[4][4] = {
 
 char capturar_tecla();
 
-// Função para desligar todos os LEDs
-void desligar_leds(PIO pio, uint sm) {
-    uint32_t valor_led = matrix_rgb(0.0, 0.0, 0.0); // Nenhuma intensidade (LEDs apagados)
-    for (int i = 0; i < NUM_PIXELS; i++) {
-        pio_sm_put_blocking(pio, sm, valor_led); // Envia o valor para cada LED
-    }
-}
+// Vetores de imagens para a matriz de LEDs
+double desenho1[25] = {
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.0, 0.3, 0.3, 0.0, 0.3,
+    0.3, 0.0, 0.3, 0.0, 0.0,
+    0.3, 0.0, 0.0, 0.3, 0.0,
+    0.0, 0.3, 0.3, 0.0, 0.3
+    };
+
+double desenho2[25] = {
+    0.3, 0.0, 0.3, 0.0, 0.0,
+    0.0, 0.3, 0.3, 0.3, 0.0,
+    0.3, 0.0, 0.0, 0.3, 0.0,
+    0.0, 0.0, 0.3, 0.0, 0.3,
+    0.0, 0.3, 0.0, 0.3, 0.3
+};
+
+double desenho3[25] = {
+    0.3, 0.0, 0.0, 0.3, 0.0,
+    0.3, 0.0, 0.3, 0.0, 0.0,
+    0.0, 0.3, 0.3, 0.3, 0.0,
+    0.3, 0.3, 0.0, 0.3, 0.0,
+    0.0, 0.0, 0.3, 0.0, 0.3
+};
+
+double desenho4[25] = {
+    0.0, 0.0, 0.3, 0.0, 0.3,
+    0.3, 0.3, 0.0, 0.3, 0.0,
+    0.0, 0.0, 0.3, 0.3, 0.0,
+    0.3, 0.3, 0.0, 0.0, 0.3,
+    0.0, 0.3, 0.0, 0.3, 0.0
+};
+
+double desenho5[25] = {
+    0.0, 0.3, 0.0, 0.0, 0.3,
+    0.3, 0.0, 0.0, 0.3, 0.3,
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.3, 0.0, 0.3, 0.0, 0.0,
+    0.0, 0.3, 0.3, 0.0, 0.3
+};
+
+// Desenhos para a animação da tecla '3' 
+double frame1[25] = {
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2
+};
+
+double frame2[25] = {
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0
+};
+
+double frame3[25] = {
+    0.2, 0.2, 0.2, 0.2, 0.2,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.2, 0.2, 0.2, 0.2, 0.2
+};
+
+double frame4[25] = {
+    0.0, 0.0, 0.2, 0.0, 0.0,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0
+};
+
+double frame5[25] = {
+    0.2, 0.2, 0.0, 0.2, 0.2,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.2, 0.2, 0.0, 0.2, 0.2
+};
+
+// Desenhos para a animação da tecla '1' 
+// Frame 1
+double cruzAlternada_frame1[25] = {
+    0.3, 0.0, 0.0, 0.0, 0.3,
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.0, 0.0, 0.3, 0.0, 0.0,
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.3, 0.0, 0.0, 0.0, 0.3
+};
+
+// Frame 2
+double cruzAlternada_frame2[25] = {
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.3, 0.0, 0.3, 0.0, 0.3,
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.3, 0.0, 0.3, 0.0, 0.3,
+    0.0, 0.3, 0.0, 0.3, 0.0
+};
+
+// Frame 3
+double cruzAlternada_frame3[25] = {
+    0.3, 0.3, 0.0, 0.3, 0.3,
+    0.3, 0.0, 0.3, 0.0, 0.3,
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.3, 0.0, 0.3, 0.0, 0.3,
+    0.3, 0.3, 0.0, 0.3, 0.3
+};
+
+// Frame 4
+double cruzAlternada_frame4[25] = {
+    0.0, 0.3, 0.3, 0.3, 0.0,
+    0.3, 0.0, 0.0, 0.0, 0.3,
+    0.3, 0.0, 0.3, 0.0, 0.3,
+    0.3, 0.0, 0.0, 0.0, 0.3,
+    0.0, 0.3, 0.3, 0.3, 0.0
+};
+
+// Frame 5
+double cruzAlternada_frame5[25] = {
+    0.3, 0.0, 0.0, 0.0, 0.3,
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.0, 0.0, 0.3, 0.0, 0.0,
+    0.0, 0.3, 0.0, 0.3, 0.0,
+    0.3, 0.0, 0.0, 0.0, 0.3
+};
+
+// Desenhos para a animação da tecla '4' 
+// Frame 1
+double onda1[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+// Frame 2
+double onda2[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.4, 0.4, 0.4, 0.0,
+    0.0, 0.4, 0.0, 0.4, 0.0,
+    0.0, 0.4, 0.4, 0.4, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+// Frame 3
+double onda3[25] = {
+    0.4, 0.4, 0.4, 0.4, 0.4,
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.4, 0.4, 0.4, 0.4, 0.4
+};
+
+// Frame 4
+double onda4[25] = {
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.4, 0.4, 0.4, 0.0,
+    0.0, 0.4, 0.0, 0.4, 0.0,
+    0.0, 0.4, 0.4, 0.4, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4
+};
+
+// Frame 5
+double onda5[25] = {
+    0.4, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.4, 0.0, 0.4, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.4, 0.0, 0.4, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4
+};
+
 
 // Função para imprimir valor binário
 void imprimir_binario(int num) {
@@ -122,12 +289,25 @@ void ligar_leds_branco(PIO pio, uint sm) {
     }
 }
 
+// Função para desligar todos os LEDs
+void desligar_leds(PIO pio, uint sm) {
+    uint32_t valor_led = matrix_rgb(0.0, 0.0, 0.0); // Nenhuma intensidade (LEDs apagados)
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pio_sm_put_blocking(pio, sm, valor_led); // Envia o valor para cada LED
+    }
+}
+
+
+
+
 int main()
 {
+
+    
     // Inicializa comunicação serial
     stdio_init_all();
 
-    PIO pio = pio0;
+PIO pio = pio0;
     bool ok;
     uint16_t i;
     uint32_t valor_led;
@@ -162,6 +342,8 @@ int main()
         gpio_set_dir(teclas_linhas[i], GPIO_IN);
         gpio_pull_up(teclas_linhas[i]); // Habilita pull-up nas linhas
     }
+
+    
 
     while (true) 
     {
@@ -198,33 +380,89 @@ int main()
                     desenho_pio(frame5, valor_led, pio, sm, r, g, b); // Frame 5
                     sleep_ms(500);
                     break;
+
+                case '4':
+                    Ativar_buzzer(BUZZ, 500);
+                    desenho_pio(onda1, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 600);
+                    desenho_pio(onda2, valor_led, pio, sm, r, g, b); // Frame 2
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 700);
+                    desenho_pio(onda3, valor_led, pio, sm, r, g, b); // Frame 3
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 800);
+                    desenho_pio(onda4, valor_led, pio, sm, r, g, b); // Frame 4
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 1000);
+                    desenho_pio(onda5, valor_led, pio, sm, r, g, b); // Frame 5
+                    sleep_ms(500);
+                    break;
+
+                case '6':
+                    desenho_pio(desenho1, valor_led, pio, sm, r, g, b); // Ação para o padrão 1
+                    sleep_ms(500);
+                    desenho_pio(desenho2, valor_led, pio, sm, r, g, b); // Ação para o padrão 2 
+                    sleep_ms(500);                    
+                    desenho_pio(desenho3, valor_led, pio, sm, r, g, b); // Ação para o padrão 3                   
+                    sleep_ms(500);
+                    desenho_pio(desenho4, valor_led, pio, sm, r, g, b); // Ação para o padrão 4                   
+                    sleep_ms(500);
+                    desenho_pio(desenho5, valor_led, pio, sm, r, g, b); // Ação para o padrão                    
+                    sleep_ms(500);
+                    break;
+
                 case '0':
                     desligar_leds(pio, sm); // Desliga todos os LEDs
                     break;
+
+                case 'B':
+                    ligar_leds_azul(pio, sm); // Liga todos os LEDs na cor azul com 100% de intensidade
+                    sleep_ms(500);
+                    break;
+                case 'C':
+                    ligar_leds_vermelho(pio, sm); // Liga todos os LEDs no vermelho com 80% de intensidade
+                    sleep_ms(500);
+                    break;
+                case 'D':
+                    ligar_leds_verde(pio, sm); // Liga todos os LEDs na cor verde com 50% de intensidade
+                    sleep_ms(500);
+                    break;
+
+                case '#':
+                    ligar_leds_branco(pio, sm);// Liga todos os LEDs na cor branca com 20% de intensidade
+                    sleep_ms(500);
+
                 default:
                     break;
             }
         }
+
+        sleep_ms(200); // Pausa antes da próxima leitura
     }
 
     return 0;
 }
 
-char capturar_tecla() 
-{
-    for (int coluna = 0; coluna < 4; coluna++) 
-    {
-        gpio_put(teclas_colunas[coluna], 0);  // Coluna em baixo
-        for (int linha = 0; linha < 4; linha++) 
-        {
-            if (!gpio_get(teclas_linhas[linha])) 
-            {
-                // Espera a tecla ser liberada
-                while (!gpio_get(teclas_linhas[linha]));
-                return matriz_teclas[linha][coluna];
+// Função para identificar a tecla pressionada
+char capturar_tecla() {
+    // Reseta todas as colunas
+    for (int i = 0; i < 4; i++) {
+        gpio_put(teclas_colunas[i], 1);
+    }
+
+    for (int coluna = 0; coluna < 4; coluna++) {
+        gpio_put(teclas_colunas[coluna], 0); // Ativa a coluna atual
+
+        for (int linha = 0; linha < 4; linha++) {
+            if (gpio_get(teclas_linhas[linha]) == 0) { // Detecta pressão na linha
+                gpio_put(teclas_colunas[coluna], 1); // Desativa a coluna atual
+                return matriz_teclas[linha][coluna]; // Retorna imediatamente
             }
         }
-        gpio_put(teclas_colunas[coluna], 1); // Coluna em alto
+
+        gpio_put(teclas_colunas[coluna], 1); // Desativa a coluna atual
     }
-    return 'n'; // Retorna 'n' se não pressionou nada
+
+    return 'n'; // Nenhuma tecla pressionada
 }
