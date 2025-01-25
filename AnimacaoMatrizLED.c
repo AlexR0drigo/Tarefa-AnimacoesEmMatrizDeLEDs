@@ -153,6 +153,14 @@ void ligar_leds_vermelho(PIO pio, uint sm) {
     }
 }
 
+// Função para ligar todos os LEDs na cor verde com 50% de intensidade
+void ligar_leds_verde(PIO pio, uint sm) {
+    uint32_t valor_led = matrix_rgb(0.0, 0.0, 0.5); // 50% de intensidade no verde
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+}
+
 int main()
 {
 
@@ -238,7 +246,10 @@ PIO pio = pio0;
                     ligar_leds_vermelho(pio, sm); // Liga todos os LEDs no vermelho com 80% de intensidade
                     sleep_ms(500);
                     break;
-
+                case 'D':
+                    ligar_leds_verde(pio, sm); // Liga todos os LEDs na cor verde com 50% de intensidade
+                    sleep_ms(500);
+                    break;
                 default:
                     break;
             }
