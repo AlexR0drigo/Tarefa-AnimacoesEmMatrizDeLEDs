@@ -73,6 +73,47 @@ double desenho5[25] = {
     0.0, 0.3, 0.3, 0.0, 0.3
 };
 
+// Desenhos para a animação da tecla '3' 
+double frame1[25] = {
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2
+};
+
+double frame2[25] = {
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0
+};
+
+double frame3[25] = {
+    0.2, 0.2, 0.2, 0.2, 0.2,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.2, 0.2, 0.2, 0.2, 0.2
+};
+
+double frame4[25] = {
+    0.0, 0.0, 0.2, 0.0, 0.0,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.0, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0
+};
+
+double frame5[25] = {
+    0.2, 0.2, 0.0, 0.2, 0.2,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.2, 0.0, 0.2, 0.0, 0.2,
+    0.2, 0.2, 0.0, 0.2, 0.2
+};
+
 // Função para imprimir valor binário
 void imprimir_binario(int num) {
     int i;
@@ -107,6 +148,14 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
 // Função para ligar todos os LEDs no vermelho com 80% de intensidade
 void ligar_leds_vermelho(PIO pio, uint sm) {
     uint32_t valor_led = matrix_rgb(0.0, 0.8, 0.0); // 80% de intensidade no vermelho
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pio_sm_put_blocking(pio, sm, valor_led);
+    }
+}
+
+// Função para ligar todos os LEDs na cor verde com 50% de intensidade
+void ligar_leds_verde(PIO pio, uint sm) {
+    uint32_t valor_led = matrix_rgb(0.0, 0.0, 0.5); // 50% de intensidade no verde
     for (int i = 0; i < NUM_PIXELS; i++) {
         pio_sm_put_blocking(pio, sm, valor_led);
     }
@@ -168,6 +217,18 @@ PIO pio = pio0;
             // Ações para cada tecla
             switch (tecla) 
             {
+                case '3':
+                    desenho_pio(frame1, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    desenho_pio(frame2, valor_led, pio, sm, r, g, b); // Frame 2
+                    sleep_ms(500);
+                    desenho_pio(frame3, valor_led, pio, sm, r, g, b); // Frame 3
+                    sleep_ms(500);
+                    desenho_pio(frame4, valor_led, pio, sm, r, g, b); // Frame 4
+                    sleep_ms(500);
+                    desenho_pio(frame5, valor_led, pio, sm, r, g, b); // Frame 5
+                    sleep_ms(500);
+                    break;
                 case '6':
                     desenho_pio(desenho1, valor_led, pio, sm, r, g, b); // Ação para o padrão 1
                     sleep_ms(500);
@@ -185,7 +246,10 @@ PIO pio = pio0;
                     ligar_leds_vermelho(pio, sm); // Liga todos os LEDs no vermelho com 80% de intensidade
                     sleep_ms(500);
                     break;
-
+                case 'D':
+                    ligar_leds_verde(pio, sm); // Liga todos os LEDs na cor verde com 50% de intensidade
+                    sleep_ms(500);
+                    break;
                 default:
                     break;
             }
