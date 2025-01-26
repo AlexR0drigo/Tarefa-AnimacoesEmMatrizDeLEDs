@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
-
+//
 //BIBLIOTECAS PARA A MATRIZ LED
 #include <math.h>
 #include "hardware/pio.h"
@@ -289,6 +289,16 @@ void ligar_leds_branco(PIO pio, uint sm) {
     }
 }
 
+// Função para desligar todos os LEDs
+void desligar_leds(PIO pio, uint sm) {
+    uint32_t valor_led = matrix_rgb(0.0, 0.0, 0.0); // Nenhuma intensidade (LEDs apagados)
+    for (int i = 0; i < NUM_PIXELS; i++) {
+        pio_sm_put_blocking(pio, sm, valor_led); // Envia o valor para cada LED
+    }
+}
+
+
+
 
 int main()
 {
@@ -400,6 +410,10 @@ PIO pio = pio0;
                     sleep_ms(500);
                     desenho_pio(desenho5, valor_led, pio, sm, r, g, b); // Ação para o padrão                    
                     sleep_ms(500);
+                    break;
+
+                case '0':
+                    desligar_leds(pio, sm); // Desliga todos os LEDs
                     break;
 
                 case 'B':
