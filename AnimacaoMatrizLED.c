@@ -412,7 +412,7 @@ PIO pio = pio0;
                     sleep_ms(500);
                     break;
 
-                case '0':
+                case 'A':
                     desligar_leds(pio, sm); // Desliga todos os LEDs
                     break;
 
