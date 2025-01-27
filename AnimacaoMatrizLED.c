@@ -224,7 +224,51 @@ double onda5[25] = {
     0.0, 0.4, 0.0, 0.4, 0.0,
     0.4, 0.0, 0.0, 0.0, 0.4
 };
+// Desenhos para a animação da tecla '5' 
+// Frame 1
+double img1[5][5] = {
+    { 1.0, 1.0, 0.0, 0.0, 0.0 },
+    { 1.0, 1.0, 0.0, 0.0, 0.0 },
+    { 0.0, 0.0, 0.0, 0.0, 0.0 },
+    { 0.0, 0.0, 0.0, 0.0, 0.0 },
+    { 0.0, 0.0, 0.0, 0.0, 0.0 }
+};
 
+// Frame 2
+double img2[5][5] = {
+    { 0.0, 0.0, 0.0, 0.0, 0.0 },
+    { 0.0, 0.333, 0.333, 0.333, 0.0 },
+    { 0.0, 0.333, 0.333, 0.333, 0.0 },
+    { 0.0, 0.333, 0.333, 0.333, 0.0 },
+    { 0.0, 0.0, 0.0, 0.0, 0.0 }
+};
+
+// Frame 3
+double img3[5][5] = {
+    { 0.0, 0.0, 0.0, 0.0, 0.0 },
+    { 0.0, 0.0, 0.0, 0.0, 0.0 },
+    { 0.0, 0.0, 0.0, 0.0, 0.0 },
+    { 0.0, 0.0, 0.0, 0.333, 0.333 },
+    { 0.0, 0.0, 0.0, 0.333, 0.333 }
+};
+
+// Frame 4
+double img4[5][5] = {
+    { 1.0, 1.0, 1.0, 1.0, 1.0 },
+    { 1.0, 0.0, 0.0, 0.0, 1.0 },
+    { 1.0, 0.0, 0.0, 0.0, 1.0 },
+    { 1.0, 0.0, 0.0, 0.0, 1.0 },
+    { 1.0, 1.0, 1.0, 1.0, 1.0 }
+};
+
+// Frame 5
+double img5[5][5] = {
+    { 1.0, 1.0, 1.0, 1.0, 1.0 },
+    { 1.0, 0.333, 0.333, 0.333, 1.0 },
+    { 1.0, 0.333, 0.0, 0.333, 1.0 },
+    { 1.0, 0.333, 0.333, 0.333, 1.0 },
+    { 1.0, 1.0, 1.0, 1.0, 1.0 }
+};
 
 // Função para imprimir valor binário
 void imprimir_binario(int num) {
@@ -396,6 +440,24 @@ PIO pio = pio0;
                     sleep_ms(500);
                     Ativar_buzzer(BUZZ, 1000);
                     desenho_pio(onda5, valor_led, pio, sm, r, g, b); // Frame 5
+                    sleep_ms(500);
+                    break;
+
+                case '5':
+                    Ativar_buzzer(BUZZ, 500);
+                    desenho_pio(img1, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 600);
+                    desenho_pio(img2, valor_led, pio, sm, r, g, b); // Frame 2
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 700);
+                    desenho_pio(img3, valor_led, pio, sm, r, g, b); // Frame 3
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 800);
+                    desenho_pio(img4, valor_led, pio, sm, r, g, b); // Frame 4
+                    sleep_ms(500);
+                    Ativar_buzzer(BUZZ, 1000);
+                    desenho_pio(img5, valor_led, pio, sm, r, g, b); // Frame 5
                     sleep_ms(500);
                     break;
 
