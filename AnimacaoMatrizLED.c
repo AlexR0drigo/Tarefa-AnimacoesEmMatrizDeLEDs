@@ -14,7 +14,7 @@
 
 // Definições da matriz de LEDs
 #define NUM_PIXELS 25
-#define OUT_PIN 9
+#define OUT_PIN 7
 // Pino do buzzer
 #define BUZZ 12
 
@@ -39,7 +39,7 @@ void Ativar_buzzer(uint gpio, uint frequencia)
 
 // Pinos para o teclado matricial
 const uint8_t teclas_colunas[4] = {4, 3, 2, 1};
-const uint8_t teclas_linhas[4] = {8, 7, 6, 5};
+const uint8_t teclas_linhas[4] = {9, 8, 6, 5};
 
 // Mapeamento do teclado matricial
 const char matriz_teclas[4][4] = {
