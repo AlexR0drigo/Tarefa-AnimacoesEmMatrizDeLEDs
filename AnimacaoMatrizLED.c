@@ -292,9 +292,25 @@ float explosao2[25] = {
 float explosao3[25] = {
     0.1, 0.0, 0.0, 0.0, 0.1,
     0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0,
     0.1, 0.0, 0.0, 0.0, 0.1
+};
+
+float explosao4[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+float explosao5[25] = {
+    0.0, 0.0, 0.1, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.1, 0.0, 0.0, 0.0, 0.1,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.1, 0.0, 0.0
 };
 
 // Função para imprimir valor binário
@@ -507,6 +523,10 @@ PIO pio = pio0;
                     desenho_pio(explosao2, valor_led, pio, sm, r, g, b); // Frame 1
                     sleep_ms(500);
                     desenho_pio(explosao3, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    desenho_pio(explosao4, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    desenho_pio(explosao5, valor_led, pio, sm, r, g, b); // Frame 1
                     sleep_ms(500);
                     break;
 
