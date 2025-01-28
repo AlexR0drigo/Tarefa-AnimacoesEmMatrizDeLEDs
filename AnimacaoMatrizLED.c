@@ -50,6 +50,9 @@ const char matriz_teclas[4][4] = {
 
 char capturar_tecla();
 
+
+// Matrizes para as animações
+
 // Vetores de imagens para a matriz de LEDs
 double desenho1[25] = {
     0.0, 0.3, 0.0, 0.3, 0.0,
@@ -391,6 +394,30 @@ double coracao_frames[15][25] = {
         0.0, 0.0, 0.0, 0.0, 0.0}
 
 };
+
+//Matriz de frames da animação cobrinha - Alex Rodrigo 
+double cobrinha[16][25] = {
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 1
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.0}, // Frame 2
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0}, // Frame 3
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.1, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 4
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.1, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 5
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 6
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 7
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 8
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 9
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 10
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 11
+    {0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 12
+    {0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 13
+    {0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 14
+    {0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, // Frame 15
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}
+
+}; // 1    2    3    4    5    6    7    8    9    10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25
+
+
+
 // Função para imprimir valor binário
 void imprimir_binario(int num)
 {
@@ -450,6 +477,35 @@ void exibir_coracao(PIO pio, uint sm, double coracao[15][25])
         sleep_ms(300); // Aguarda 300ms antes de mudar para o próximo frame
     }
 }
+
+// Função que anima a cobrinha, nescessária pois utiliza a cor verde e vermelha ao mesmo tempo
+void exibir_cobrinha(PIO pio, uint sm, double cobrinha[16][25])
+{
+    uint32_t valor_led;
+
+    for (int frame = 0; frame < 16; frame++)
+    { // Itera pelos 16 frames
+        for (int i = 0; i < NUM_PIXELS; i++)
+        { // Itera pelos LEDs
+            double brilho = cobrinha[frame][i];
+
+            // Configuração de cores: vermelho para intensidade > 0.9, verde para <= 0.9
+            if (brilho > 0.9)
+            {
+                valor_led = matrix_rgb(0.0, brilho, 0.0); // Cor vermelha
+            }
+            else
+            {
+                valor_led = matrix_rgb(0.0, 0.0, brilho); // Cor verde
+            }
+
+            // Envia o valor calculado ao LED
+            pio_sm_put_blocking(pio, sm, valor_led);
+        }
+        sleep_ms(700); // Aguarda 200ms antes de mudar para o próximo frame
+    }
+}
+
 // Função para ligar todos os LEDs no vermelho com 80% de intensidade
 void ligar_leds_vermelho(PIO pio, uint sm)
 {
@@ -567,6 +623,9 @@ int main()
                 sleep_ms(500);
                 desenho_pio(cruzAlternada_frame5, valor_led, pio, sm, r, g, b); // Frame 5
                 sleep_ms(500);
+                break;
+            case '2':
+                exibir_cobrinha(pio, sm, cobrinha);
                 break;
             case '3':
                 desenho_pio(frame1, valor_led, pio, sm, r, g, b); // Frame 1
