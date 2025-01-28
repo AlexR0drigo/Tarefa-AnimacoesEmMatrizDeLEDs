@@ -271,6 +271,48 @@ double img5[25] = {
     1.0, 1.0, 1.0, 1.0, 1.0
 };
 
+
+// Amimação da tecla 07
+float explosao[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.3, 0.0, 0.0,
+    0.0, 0.3, 0.3, 0.3, 0.0,
+    0.0, 0.0, 0.3, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+float explosao2[25] = {
+    0.0, 0.0, 0.3, 0.0, 0.0,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.3, 0.0, 0.0, 0.0, 0.3,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.0, 0.0, 0.3, 0.0, 0.0
+};
+
+float explosao3[25] = {
+    0.1, 0.0, 0.0, 0.0, 0.1,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.1, 0.0, 0.0, 0.0, 0.1
+};
+
+float explosao4[25] = {
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0,
+    0.0, 0.2, 0.0, 0.2, 0.0,
+    0.0, 0.0, 0.2, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0
+};
+
+float explosao5[25] = {
+    0.0, 0.0, 0.1, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.1, 0.0, 0.0, 0.0, 0.1,
+    0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.1, 0.0, 0.0
+};
+
 // Função para imprimir valor binário
 void imprimir_binario(int num) {
     int i;
@@ -472,6 +514,19 @@ PIO pio = pio0;
                     desenho_pio(desenho4, valor_led, pio, sm, r, g, b); // Ação para o padrão 4                   
                     sleep_ms(500);
                     desenho_pio(desenho5, valor_led, pio, sm, r, g, b); // Ação para o padrão                    
+                    sleep_ms(500);
+                    break;
+
+                case '7':
+                    desenho_pio(explosao, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    desenho_pio(explosao2, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    desenho_pio(explosao3, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    desenho_pio(explosao4, valor_led, pio, sm, r, g, b); // Frame 1
+                    sleep_ms(500);
+                    desenho_pio(explosao5, valor_led, pio, sm, r, g, b); // Frame 1
                     sleep_ms(500);
                     break;
 
