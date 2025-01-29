@@ -36,6 +36,7 @@ Tecla #: Liga todos os LEDs na cor branca, com 20% de luminosidade.
 
 Aqui está o vídeo demonstrando o funcionamento do sistema e das animações geradas com uma breve explicação das resoluções utilizadas.
 
+https://drive.google.com/drive/folders/1sSuYZrVoJUJAJPcSiNtV3b4TssK5GY3N?usp=drive_link
 
 ## Equipe e suas funções na tarefa
 
@@ -53,6 +54,6 @@ Gabriel Oliveira: tecla # que liga todos os LEDs na cor Branca em 20% de luminos
 
 Jeová Cosme: tecla B que liga todos os LEDs na cor azul em 100% de luminosidade, e animação da tecla 1.
 
-Gabriel Menezes: Revisão, tecla C que liga todos os LEDs na cor vermelha em 80% de luminosidade, e animação da tecla 0.
+Gabriel Menezes: Revisão, vídeo, tecla C que liga todos os LEDs na cor vermelha em 80% de luminosidade, e animação da tecla 0.
 
 Todos os integrantes do grupo participaram ativamente na construção do código. No entanto, os integrantes Naiane Santos e Victor Henrick não participaram das atividades do projeto.
