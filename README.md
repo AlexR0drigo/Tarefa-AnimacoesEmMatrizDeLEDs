@@ -8,9 +8,11 @@ e o projeto também inclui o controle de cores e intensidades dos LEDs.
 
 Passo 1: Clone o repositório do projeto para o seu ambiente local
 
-Passo 2: Antes de compilar o código, é necessário garantir que todas as extensões e ferramentas estão devidamente instaladas
+Passo 2: Antes de compilar o código, é necessário garantir que todas as extensões e ferramentas estão devidamente instaladas.
+
 Instalar o Pico SDK e extensão Raspberry Pi Pico: Siga as instruções do Pico SDK para configurar o ambiente de desenvolvimento no VS Code e instale a extensão Raspberry Pi Pico.
-Instalar a Extensão Wokwi: Permite simular o Raspberry Pi Pico W no ambiente de desenvolvimento. Instale a extensão Wokwi Simulator no catálogo extensões do VS Code e depois habilite a mesma com uma licença  de 30 dias gratuita
+
+Instalar a Extensão Wokwi: Permite simular o Raspberry Pi Pico W no ambiente de desenvolvimento. Instale a extensão Wokwi Simulator no catálogo extensões do VS Code e depois habilite a mesma com uma licença  de 30 dias gratuita.
 
 Passo 3: Com o ambiente devidamente configurado, abra o código no VS Code e compile o projeto a partir do menu de compilação da extensão Raspberry Pi Pico.
 
