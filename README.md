@@ -22,7 +22,7 @@ Passo 5: Aperte o botão play no canto superior esquerdo e agora você pode inte
 
 ## Funções
 
-Teclass de 0 a 7: acionam animações específicas na matriz de LEDs 5x5.
+Teclas de 0 a 7: acionam animações específicas na matriz de LEDs 5x5.
 
 Tecla A: Desliga todos os LEDs.
 
