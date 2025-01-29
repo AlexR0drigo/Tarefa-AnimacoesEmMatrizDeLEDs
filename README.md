@@ -21,10 +21,15 @@ Passo 5: Aperte o botão play no canto superior esquerdo e agora você pode inte
 ## Funções
 
 Teclass de 0 a 7: acionam animações específicas na matriz de LEDs 5x5.
+
 Tecla A: Desliga todos os LEDs.
+
 Tecla B: Liga todos os LEDs na cor azul, com 100% de luminosidade.
+
 Tecla C: Liga todos os LEDs na cor vermelha, com 80% de luminosidade.
+
 Tecla D: Liga todos os LEDs na cor verde, com 50% de luminosidade.
+
 Tecla #: Liga todos os LEDs na cor branca, com 20% de luminosidade.
 
 ## Vídeo
